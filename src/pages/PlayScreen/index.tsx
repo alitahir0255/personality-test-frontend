@@ -1,9 +1,9 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import api from "api";
 import ChoiceItem from "components/ChoiceListItem";
 import Loading from "components/Loading";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Answer, Choice, Question, Result } from "shared/interfaces";
 import routes from "shared/routes";
 
@@ -45,7 +45,7 @@ const PlayScreen = () => {
       if (!user) {
         navigate(routes.HOME);
       }
-      const response = await axios.get("http://localhost:3000/questions");
+      const response = await api.get("/questions");
       const { data } = response.data;
       setQuestions(data);
       setCurrentQuestion(data[currentIndex]);
